@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "667289792632",
+    "firebase_url": "https://callbeer-6c15f.firebaseio.com",
+    "project_id": "callbeer-6c15f",
+    "storage_bucket": "callbeer-6c15f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:667289792632:android:01ada0c97ec6ce3a4cbd8d",
+        "android_client_info": {
+          "package_name": "com.multistar.callbeer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "667289792632-rrcofrreepmtnlnqbbpmlbs269lekbq8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQGFTGe61ay6-HvpjgmYUtyErWWhzQZo4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "667289792632-rrcofrreepmtnlnqbbpmlbs269lekbq8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
