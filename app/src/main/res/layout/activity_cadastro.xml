@@ -21,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/CadEmpresaNome"
+        android:id="@+id/cadEmpresaNome"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -44,9 +44,9 @@
         android:ems="10"
         android:hint="Razão social"
         android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="@+id/CadEmpresaNome"
-        app:layout_constraintStart_toStartOf="@+id/CadEmpresaNome"
-        app:layout_constraintTop_toBottomOf="@+id/CadEmpresaNome" />
+        app:layout_constraintEnd_toEndOf="@+id/cadEmpresaNome"
+        app:layout_constraintStart_toStartOf="@+id/cadEmpresaNome"
+        app:layout_constraintTop_toBottomOf="@+id/cadEmpresaNome" />
 
     <EditText
         android:id="@+id/cadEmpresaEmail"
