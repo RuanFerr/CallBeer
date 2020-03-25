@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CadastroEmpresa">
+
+    <TextView
+        android:id="@+id/labelTopCadastro"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:background="#0000ff"
+        android:fontFamily="sans-serif-light"
+        android:text="Cadastro da empresa"
+        android:textColor="#000"
+        android:textSize="30dp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/CadEmpresaNome"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:ems="10"
+        android:hint="nome"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/labelTopCadastro"
+        app:layout_constraintStart_toStartOf="@+id/labelTopCadastro"
+        app:layout_constraintTop_toBottomOf="@+id/labelTopCadastro" />
+
+    <EditText
+        android:id="@+id/cadEmpresaRazaoSocial"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:ems="10"
+        android:hint="Razão social"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/CadEmpresaNome"
+        app:layout_constraintStart_toStartOf="@+id/CadEmpresaNome"
+        app:layout_constraintTop_toBottomOf="@+id/CadEmpresaNome" />
+
+    <EditText
+        android:id="@+id/cadEmpresaEmail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:ems="10"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="@+id/cadEmpresaRazaoSocial"
+        app:layout_constraintStart_toStartOf="@+id/cadEmpresaRazaoSocial"
+        app:layout_constraintTop_toBottomOf="@+id/cadEmpresaRazaoSocial" />
+
+    <EditText
+        android:id="@+id/cadEmpresaSenha"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:ems="10"
+        android:hint="Senha"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="@+id/cadEmpresaEmail"
+        app:layout_constraintStart_toStartOf="@+id/cadEmpresaEmail"
+        app:layout_constraintTop_toBottomOf="@+id/cadEmpresaEmail" />
+
+    <EditText
+        android:id="@+id/cadEmpresaEndereco"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:ems="10"
+        android:hint="Endereco"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/cadEmpresaSenha"
+        app:layout_constraintStart_toStartOf="@+id/cadEmpresaSenha"
+        app:layout_constraintTop_toBottomOf="@+id/cadEmpresaSenha" />
+
+    <EditText
+        android:id="@+id/cadEmpresaCEP"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:ems="10"
+        android:hint="CEP"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/cadEmpresaEndereco"
+        app:layout_constraintStart_toStartOf="@+id/cadEmpresaEndereco"
+        app:layout_constraintTop_toBottomOf="@+id/cadEmpresaEndereco" />
+
+    <EditText
+        android:id="@+id/cadEmpresaCNPJ"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:ems="10"
+        android:hint="CNPJ"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/cadEmpresaCEP"
+        app:layout_constraintStart_toStartOf="@+id/cadEmpresaCEP"
+        app:layout_constraintTop_toBottomOf="@+id/cadEmpresaCEP" />
+
+    <EditText
+        android:id="@+id/cadEmpresaIE"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:ems="10"
+        android:hint="I.E."
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/cadEmpresaCNPJ"
+        app:layout_constraintStart_toStartOf="@+id/cadEmpresaCNPJ"
+        app:layout_constraintTop_toBottomOf="@+id/cadEmpresaCNPJ" />
+
+    <EditText
+        android:id="@+id/cadEmpresaTelefone"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:ems="10"
+        android:hint="Telefone"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/cadEmpresaIE"
+        app:layout_constraintStart_toStartOf="@+id/cadEmpresaIE"
+        app:layout_constraintTop_toBottomOf="@+id/cadEmpresaIE" />
+
+    <Button
+        android:id="@+id/btnCadastrarEmpresa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="Cadastrar"
+        android:textColor="#000"
+        android:background="#0000ff"
+        app:layout_constraintEnd_toEndOf="@+id/cadEmpresaTelefone"
+        app:layout_constraintStart_toStartOf="@+id/cadEmpresaTelefone"
+        app:layout_constraintTop_toBottomOf="@+id/cadEmpresaTelefone" />
+</androidx.constraintlayout.widget.ConstraintLayout>
