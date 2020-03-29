@@ -5,7 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import com.google.firebase.firestore.FirestoreRegistrar;
+import com.google.firestore.v1.FirestoreGrpc;
 import com.multistar.callbeer.Firebase.CadEmpresa;
 import com.multistar.callbeer.model.Empresa;
 
@@ -48,11 +51,14 @@ public class CadastroEmpresa extends AppCompatActivity {
             return;
         }
 
+        Toast aviso = Toast.makeText(this, "Campos OK", Toast.LENGTH_SHORT);
+        aviso.show();
     }
 
    public boolean testarCampos(Empresa empresa){
 
         boolean a = (
+
                 (empresa.getEmail() == "" || empresa.getEmail().isEmpty()) ||
                         (empresa.getNome() == "" || empresa.getNome().isEmpty() ) ||
                         (empresa.getEndereco() == "" || empresa.getEndereco().isEmpty()) ||
