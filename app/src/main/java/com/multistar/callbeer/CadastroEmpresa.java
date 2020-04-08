@@ -1,15 +1,16 @@
 package com.multistar.callbeer;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.EditText;
-import android.widget.Toast;
 
-import com.google.firebase.firestore.FirestoreRegistrar;
-import com.google.firestore.v1.FirestoreGrpc;
-import com.multistar.callbeer.Firebase.CadEmpresa;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 import com.multistar.callbeer.model.Empresa;
 
 public class CadastroEmpresa extends AppCompatActivity {
@@ -42,36 +43,52 @@ public class CadastroEmpresa extends AppCompatActivity {
 
     public void CadastrarEmpresa(){
 
-        CadEmpresa cad = new CadEmpresa();
+String email = mCadEmpresaNome.getText().toString();
+String senha = mCadEmpresaSenha.getText().toString();
 
-        Empresa empresa = new Empresa(mCadEmpresaNome.getText().toString(), mCadEmpresaRazaoSocial.getText().toString(), mCadEmpresaEmail.getText().toString(), mCadEmpresaEndereco.getText().toString(), Integer.valueOf(mCadEmpresaCep.getText().toString()), Integer.valueOf(mCadEmpresaCnpj.getText().toString()), mCadEmpresaIe.getText().toString(), mCadEmpresaTelefone.getText().toString());
-
-        if (testarCampos(empresa)) {
+        if (testarCampos()) {
             Log.i("TESTE_CAD", "LOGIN_ERR");
             return;
         }
 
-        Toast aviso = Toast.makeText(this, "Campos OK", Toast.LENGTH_SHORT);
-        aviso.show();
+        FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, senha)
+                .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                    @Override
+                    public void onSuccess(AuthResult authResult) {
+
+                        Log.i("auth", authResult.getUser().getUid());
+
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.i("auth", e.getMessage());
+                    }
+                });
+
+        Empresa empresa = new Empresa(mCadEmpresaNome.getText().toString(), mCadEmpresaRazaoSocial.getText().toString(), mCadEmpresaEmail.getText().toString(), mCadEmpresaEndereco.getText().toString(), Integer.valueOf(mCadEmpresaCep.getText().toString()), Integer.valueOf(mCadEmpresaCnpj.getText().toString()), mCadEmpresaIe.getText().toString(), mCadEmpresaTelefone.getText().toString());
+
     }
 
-   public boolean testarCampos(Empresa empresa){
+    public boolean testarCampos(){
 
         boolean a = (
 
-                (empresa.getEmail() == "" || empresa.getEmail().isEmpty()) ||
-                        (empresa.getNome() == "" || empresa.getNome().isEmpty() ) ||
-                        (empresa.getEndereco() == "" || empresa.getEndereco().isEmpty()) ||
-                        (empresa.getIe() == "" || empresa.getIe().isEmpty()) ||
-                        (empresa.getRazaoSocial() == "" || empresa.getIe().isEmpty()) ||
-                        (empresa.getTelefone() == "" || empresa.getTelefone().isEmpty()) ||
-                        ("".equals(empresa.getCEP()) || empresa.getCEP() == 0) ||
-                        ("".equals(empresa.getCnpj()) || empresa.getCnpj() == 0)
+                (mCadEmpresaEmail.getText().toString().isEmpty() || mCadEmpresaEmail.getText().toString() == null) ||
+                        (mCadEmpresaNome.getText().toString().isEmpty() || mCadEmpresaNome.getText().toString() == null) ||
+                        (mCadEmpresaEndereco.getText().toString().isEmpty() || mCadEmpresaEndereco.getText().toString() == null) ||
+                        (mCadEmpresaIe.getText().toString().isEmpty() || mCadEmpresaIe.getText().toString() == null) ||
+                        (mCadEmpresaRazaoSocial.getText().toString().isEmpty() || mCadEmpresaRazaoSocial.getText().toString() == null) ||
+                        (mCadEmpresaTelefone.getText().toString().isEmpty() || mCadEmpresaTelefone.getText().toString() == null) ||
+                        (mCadEmpresaCep.getText().toString().isEmpty() || mCadEmpresaCep.getText().toString() == null) ||
+                        (mCadEmpresaCnpj.getText().toString().isEmpty() || mCadEmpresaCnpj.getText().toString() == null) ||
+                        (mCadEmpresaSenha.getText().toString().isEmpty() || mCadEmpresaSenha.getText().toString() == null)
 
         );
 
-        return !a;
+        return a;
 
-   }
+    }
 
 }

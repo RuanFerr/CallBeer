@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,8 +12,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -34,19 +37,33 @@ public class MainActivity extends AppCompatActivity {
                 String email = mEditEmail.getText().toString();
                 String senha = mEditSenha.getText().toString();
 
-                FirebaseAuth.getInstance().signInWithEmailAndPassword(email, senha)
-                        .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-                            @Override
-                            public void onSuccess(AuthResult authResult) {
-                                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                                String uid = user.getUid();
+                //testando se os campos estão vazios
+                if ((email == null || email.isEmpty()) || (senha == null || senha.isEmpty())) {
+                    Toast.makeText(getApplicationContext(), "Preencha corretamente os campos", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
+                FirebaseAuth.getInstance().signInWithEmailAndPassword(email, senha)
+                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+                                    //FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+                                    Intent intent = new Intent(MainActivity.this, Principal.class);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                                    startActivity(intent);
+
+                                }
+                                testingCadCLI();
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
                                Log.i("testeFailure", "Falha encontrada");
+
                             }
                         });
 
@@ -56,11 +73,11 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void activityCad(){
+    //criando intent pra ir pra tela de cadastro. essa atividade será acessado apenas por um tipo de usuário após os testes
+    public void testingCadCLI() {
+        Intent intent = new Intent(this, CadastroPessoa.class);
 
-        Intent intent = new Intent(this, CadastroEmpresa.class);
         startActivity(intent);
-
-    };
+    }
 
 }

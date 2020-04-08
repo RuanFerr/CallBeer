@@ -1,5 +1,8 @@
 package com.multistar.callbeer.login;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class LoggedUser {
 
     private String email;
@@ -29,4 +32,17 @@ public class LoggedUser {
     public void setNome(String nome) {
         this.nome = nome;
     }
+
+    public static void createUserInFirebase(String email, String senha){
+
+      FirebaseAuth auth = FirebaseAuth.getInstance();
+
+      FirebaseUser user = auth.getCurrentUser();
+
+      user.updateEmail(email);
+
+    user.sendEmailVerification();
+
+    }
+
 }

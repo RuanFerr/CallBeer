@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CadastroPessoa">
+
+    <TextView
+        android:id="@+id/labelTopCadastro2"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:background="#0000ff"
+        android:fontFamily="sans-serif-light"
+        android:text="Cadastro pessoa"
+        android:textColor="#000"
+        android:textSize="30dp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/cadPessoaNome"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
+        android:ems="10"
+        android:hint="Nome"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/labelTopCadastro2" />
+
+    <EditText
+        android:id="@+id/cadPessoaEmail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:ems="10"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="@+id/cadPessoaNome"
+        app:layout_constraintStart_toStartOf="@+id/cadPessoaNome"
+        app:layout_constraintTop_toBottomOf="@+id/cadPessoaNome" />
+
+    <EditText
+        android:id="@+id/cadPessoaSenha"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:ems="10"
+        android:hint="Senha"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="@+id/cadPessoaEmail"
+        app:layout_constraintStart_toStartOf="@+id/cadPessoaEmail"
+        app:layout_constraintTop_toBottomOf="@+id/cadPessoaEmail" />
+
+    <EditText
+        android:id="@+id/cadPessoaRota"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:ems="10"
+        android:hint="Rota de Venda (cidades)"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/cadPessoaSenha"
+        app:layout_constraintStart_toStartOf="@+id/cadPessoaSenha"
+        app:layout_constraintTop_toBottomOf="@+id/cadPessoaSenha" />
+
+    <EditText
+        android:id="@+id/cadPessoaEndereco"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:ems="10"
+        android:hint="Endereço"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/cadPessoaRota"
+        app:layout_constraintStart_toStartOf="@+id/cadPessoaRota"
+        app:layout_constraintTop_toBottomOf="@+id/cadPessoaRota" />
+
+    <EditText
+        android:id="@+id/cadPessoaCEP"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:ems="10"
+        android:hint="CEP"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/cadPessoaEndereco"
+        app:layout_constraintStart_toStartOf="@+id/cadPessoaEndereco"
+        app:layout_constraintTop_toBottomOf="@+id/cadPessoaEndereco" />
+
+    <EditText
+        android:id="@+id/cadPessoaCPF"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:ems="10"
+        android:hint="CPF"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/cadPessoaCEP"
+        app:layout_constraintStart_toStartOf="@+id/cadPessoaCEP"
+        app:layout_constraintTop_toBottomOf="@+id/cadPessoaCEP" />
+
+    <EditText
+        android:id="@+id/cadPessoaRG"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:ems="10"
+        android:hint="RG"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/cadPessoaCPF"
+        app:layout_constraintStart_toStartOf="@+id/cadPessoaCPF"
+        app:layout_constraintTop_toBottomOf="@+id/cadPessoaCPF" />
+
+    <EditText
+        android:id="@+id/cadPessoaTelefone"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:ems="10"
+        android:hint="Telefone"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/cadPessoaRG"
+        app:layout_constraintStart_toStartOf="@+id/cadPessoaRG"
+        app:layout_constraintTop_toBottomOf="@+id/cadPessoaRG" />
+
+    <Button
+        android:id="@+id/btnCadastrarPessoa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:background="#0000ff"
+        android:text="Cadastrar"
+        app:layout_constraintEnd_toEndOf="@+id/cadPessoaTelefone"
+        app:layout_constraintStart_toStartOf="@+id/cadPessoaTelefone"
+        app:layout_constraintTop_toBottomOf="@+id/cadPessoaTelefone" />
+</androidx.constraintlayout.widget.ConstraintLayout>
