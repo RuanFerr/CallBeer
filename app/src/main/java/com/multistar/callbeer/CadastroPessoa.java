@@ -12,10 +12,13 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.multistar.callbeer.model.Representante;
 
 public class CadastroPessoa extends AppCompatActivity {
@@ -108,7 +111,19 @@ public class CadastroPessoa extends AppCompatActivity {
                             Log.i("AuthSucess", task.getResult().getUser().getUid());
                             String uid = FirebaseAuth.getInstance().getUid();
                             Representante rep = new Representante(uid, nome, email,rota, endereco,cep,cpf,rg,telefone);
-
+                            FirebaseFirestore.getInstance().collection(" /users/representantes").add(rep)
+                            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                @Override
+                                public void onSuccess(DocumentReference documentReference) {
+                                    Log.i("testeStore", "CADASTRO OK");
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.e("TesteStore", e.getMessage());
+                                }
+                            });
                         }
                     }
                 })

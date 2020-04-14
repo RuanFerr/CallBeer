@@ -56,14 +56,13 @@ public class MainActivity extends AppCompatActivity {
                                     startActivity(intent);
 
                                 }
-                                testingCadCLI();
+
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
-                               Log.i("testeFailure", "Falha encontrada");
-
+                                Log.i("testeFailure", "Falha encontrada");
                             }
                         });
 
@@ -74,10 +73,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //criando intent pra ir pra tela de cadastro. essa atividade será acessado apenas por um tipo de usuário após os testes
-    public void testingCadCLI() {
-        Intent intent = new Intent(this, CadastroPessoa.class);
+    /**public void testingCadCLI() {
+     Intent intent = new Intent(this, CadastroPessoa.class);
 
-        startActivity(intent);
-    }
+     startActivity(intent);
+     }**/
 
 }
