@@ -14,6 +14,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.multistar.callbeer.model.Empresa;
 
@@ -73,7 +74,21 @@ public class CadastroEmpresa extends AppCompatActivity {
                     @Override
                     public void onSuccess(AuthResult authResult) {
 
-                        FirebaseFirestore.getInstance().collection("/users/empresas").add(empresa);
+                        FirebaseFirestore.getInstance()
+                                .collection("users").document().collection("empresas")
+                                .add(empresa)
+                                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                    @Override
+                                    public void onSuccess(DocumentReference documentReference) {
+                                        Log.i("teste", "OK");
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Log.e("teste", e.getMessage());
+                                    }
+                                });
 
                     }
                 })

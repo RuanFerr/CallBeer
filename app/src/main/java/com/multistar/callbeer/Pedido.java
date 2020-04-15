@@ -6,12 +6,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -24,89 +28,139 @@ import com.xwray.groupie.ViewHolder;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+import java.util.concurrent.ForkJoinTask;
 
 public class Pedido extends AppCompatActivity {
     String tipo;
+    ArrayList<Integer> qttsCerveja = new ArrayList<>();
     RecyclerView mListaBebidas;
+
+
+    ArrayList<ItemBebida> bbd = new ArrayList<>();
+
+    RecyclerView.LayoutManager lm = new LinearLayoutManager(this);
+
     GroupAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pedido);
         TextView mTxtViewTipoBebida = findViewById(R.id.txtViewTipoBebida);
         adapter = new GroupAdapter();
+
+
+
         mListaBebidas = findViewById(R.id.ListaPedidos);
         mListaBebidas.setAdapter(adapter);
-        mListaBebidas.setLayoutManager(new LinearLayoutManager(this));
+
+        mListaBebidas.setLayoutManager(lm);
         if (getIntent().hasExtra("TIPO")){
             Bundle extras = getIntent().getExtras();
             tipo = extras.getString("TIPO");
             mTxtViewTipoBebida.setText(tipo);
+            this.tipo = tipo;
+
         }
-
+        buscarBebidas(tipo);
     }
+    public void buscarBebidas(final String tipoBebida){
 
-    public void buscarBebidas(String tipo){
-
-        FirebaseFirestore.getInstance().collection("/bebidas/"+tipo)
+        FirebaseFirestore.getInstance().collection("/bebidas")
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
                         if (e != null){
-                            Log.e("teste", e.getMessage());
+                            Log.e("testeErro", e.getMessage());
+
                         }
                         List<DocumentSnapshot> bebidas = queryDocumentSnapshots.getDocuments();
-                        for (DocumentSnapshot b: bebidas) {
-                            Bebida bebida = b.toObject(Bebida.class);
-                            adapter.add(new ItemBebida(bebida));
-                        }
+                        int ctrl = 0;
+                        ViewHolder vh = new ViewHolder(mListaBebidas);
 
+                        for (DocumentSnapshot b : bebidas) {
+
+                            Bebida bebida = b.toObject(Bebida.class);
+                            if (bebida.getTipo().equals(tipoBebida)) {
+
+                                // bbd.add(new ItemBebida(bebida));
+                                //ctrl = bbd.size()-1;
+                                ItemBebida.Qtts.add("0");
+                                ItemBebida.checkBoxex.add(false);
+                                adapter.add(new ItemBebida(bebida, ctrl));
+                                Log.i("tttt", String.valueOf(ctrl));
+                                ctrl = ctrl + 1;
+                            }
+                        }
+                        adapter.add(new BtnPedido());
+                        adapter.notifyDataSetChanged();
                     }
                 });
 
     }
 
-    private class ItemBebida extends Item<ViewHolder>{
 
-        int qtde;
-        private Bebida b;
+    private class BtnPedido extends Item<ViewHolder>{
 
-        public ItemBebida(Bebida bebida){
-            this.b = bebida;
+        private Button mBtnPedido;
+
+        public BtnPedido(){
+
         }
 
         @Override
         public void bind(@NonNull ViewHolder viewHolder, int position) {
 
-            CheckBox checkBox = viewHolder.itemView.findViewById(R.id.checkBox);
-            TextView txtQtde = viewHolder.itemView.findViewById(R.id.txtQtde);
+            mBtnPedido = viewHolder.itemView.findViewById(R.id.btnAdicionar);
 
-            checkBox.setText("");
+            mBtnPedido.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
+                    adicionarBebidas();
 
-        }
+                    int aaa = Integer.parseInt(ItemBebida.Qtts.get(0)) + Integer.parseInt(ItemBebida.Qtts.get(1));
 
-        public int getQtde() {
-            return qtde;
-        }
+                    Log.i("tttt", ItemBebida.Qtts.get(1));
+                    Log.i("tttt", String.valueOf(aaa));
+                }
+            });
 
-        public void setQtde(int qtde) {
-            this.qtde = qtde;
-        }
-
-        public Bebida getB() {
-            return b;
-        }
-
-        public void setB(Bebida b) {
-            this.b = b;
         }
 
         @Override
         public int getLayout() {
-            return R.layout.item_lista;
+            return R.layout.btn_adicionar;
         }
+
+
+        public Button getmBtnPedido() {
+            return mBtnPedido;
+        }
+
+        public void setmBtnPedido(Button mBtnPedido) {
+            this.mBtnPedido = mBtnPedido;
+        }
+    }
+
+    public void adicionarBebidas(){
+
+        for (int i = 0; i < ItemBebida.checkBoxex.size(); i++){
+            int c = 0;
+            if (ItemBebida.checkBoxex.get(i) == true) {
+
+                ItemBebida ib = (ItemBebida) adapter.getItem(i);
+
+                Carrinho.bebidas.add(ib);
+                Carrinho.bebidas.get(c).setQtde(Integer.parseInt(ItemBebida.Qtts.get(i)));
+                c = c + 1;
+            }
+        }
+
     }
 
 }

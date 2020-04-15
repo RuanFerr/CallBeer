@@ -1,14 +1,21 @@
 package com.multistar.callbeer;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.multistar.callbeer.model.Bebida;
 
 public class Principal extends AppCompatActivity {
 
@@ -109,8 +116,8 @@ public class Principal extends AppCompatActivity {
     public void abrirPedido(String tipo){
         Intent intent = new Intent(Principal.this, Pedido.class);
         intent.putExtra("TIPO", tipo);
+
         startActivity(intent);
     }
-
 
 }
