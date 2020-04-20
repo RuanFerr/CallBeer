@@ -29,6 +29,7 @@ public class Principal extends AppCompatActivity {
     private Button mBtAguasEChas;
     private ImageView mImgPrincipal;
 
+    private Button testeRec;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -102,6 +103,14 @@ public class Principal extends AppCompatActivity {
             }
         });
 
+        testeRec = findViewById(R.id.btnRec);
+        testeRec.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Principal.this, Reclamacao.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void verifyAuth(){

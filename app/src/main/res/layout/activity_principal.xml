@@ -108,4 +108,14 @@
         app:layout_constraintEnd_toEndOf="@+id/btSucos"
         app:layout_constraintStart_toStartOf="@+id/btSucos"
         app:layout_constraintTop_toBottomOf="@+id/btSucos" />
+
+    <Button
+        android:id="@+id/btnRec"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="teste Reclamacao"
+        app:layout_constraintEnd_toEndOf="@+id/btAguasEChas"
+        app:layout_constraintStart_toStartOf="@+id/btIsotonicos"
+        app:layout_constraintTop_toBottomOf="@+id/btAguasEChas" />
 </androidx.constraintlayout.widget.ConstraintLayout>

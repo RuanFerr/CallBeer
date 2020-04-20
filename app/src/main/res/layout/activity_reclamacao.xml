@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Reclamacao">
+
+    <EditText
+        android:id="@+id/txtNomeCliente"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="16dp"
+        android:hint="Cliente"
+        android:textSize="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/txtMotivoReclamacao"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:hint="Motivo"
+        android:textSize="25dp"
+        app:layout_constraintEnd_toEndOf="@+id/txtNomeCliente"
+        app:layout_constraintStart_toStartOf="@+id/txtNomeCliente"
+        app:layout_constraintTop_toBottomOf="@+id/txtNomeCliente" />
+
+    <EditText
+        android:id="@+id/txtDataReclamacao"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:hint="Data     DD/MM/AAAA"
+        android:textSize="25dp"
+        app:layout_constraintEnd_toEndOf="@+id/txtMotivoReclamacao"
+        app:layout_constraintStart_toStartOf="@+id/txtMotivoReclamacao"
+        app:layout_constraintTop_toBottomOf="@+id/txtMotivoReclamacao" />
+
+    <EditText
+        android:id="@+id/txtDescricaoReclamacao"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:hint="Descrição"
+        android:height="100dp"
+        android:textSize="25dp"
+        app:layout_constraintEnd_toEndOf="@+id/txtDataReclamacao"
+        app:layout_constraintStart_toStartOf="@+id/txtDataReclamacao"
+        app:layout_constraintTop_toBottomOf="@+id/txtDataReclamacao" />
+
+    <Button
+        android:id="@+id/btnAddImgReclamacao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="300dp"
+        android:text="Adicionar Imagem"
+        app:layout_constraintBottom_toTopOf="@+id/btnEnviarReclamacao"
+        app:layout_constraintStart_toStartOf="@+id/txtDescricaoReclamacao"
+        app:layout_constraintTop_toBottomOf="@+id/txtDescricaoReclamacao" />
+
+    <Button
+        android:id="@+id/btnEnviarReclamacao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:text="Enviar Formulário"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
