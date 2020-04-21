@@ -10,8 +10,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.multistar.callbeer.Firebase.InsertData;
+
 //este recurso está sendo usado para teste da ferramenta. no fim dos testes, vao ser feitos ajustes.
 public class Reclamacao extends AppCompatActivity {
 
@@ -79,9 +82,18 @@ public class Reclamacao extends AppCompatActivity {
                 mTxtMotivo.getText().toString(),
                 mTxtData.getText().toString(),
                 mTxtDescricao.getText().toString()
-                );
+        );
 
-        com.multistar.callbeer.model.Reclamacao.EnviarReclamacao(reclamacao, mImagemSelecionada);
+        com.multistar.callbeer.model.Reclamacao.salvarReclamacao(reclamacao, mImagemSelecionada);
+
+        if (InsertData.isRetorno() == true) {
+            Toast.makeText(Reclamacao.this, "Enviado com sucesso", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(Reclamacao.this, Principal.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        } else {
+            Toast.makeText(Reclamacao.this, "Erro ao enviar", Toast.LENGTH_SHORT).show();
+        }
 
     }
 

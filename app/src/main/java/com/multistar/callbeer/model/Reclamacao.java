@@ -11,6 +11,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.multistar.callbeer.Firebase.InsertData;
 
 import java.util.UUID;
 
@@ -79,9 +80,10 @@ public class Reclamacao {
         this.imagemReclamacao = imagemReclamacao;
     }
 
-    public static void EnviarReclamacao(Reclamacao reclamacao, Uri img) {
+    public static void salvarReclamacao(Reclamacao reclamacao, Uri img) {
 
         String nomeImagem = UUID.randomUUID().toString();
+        final Reclamacao rec = reclamacao;
 
         final StorageReference ref = FirebaseStorage.getInstance().getReference("/images/" + nomeImagem);
         ref.putFile(img)
@@ -92,6 +94,12 @@ public class Reclamacao {
                             @Override
                             public void onSuccess(Uri uri) {
                                 Log.i("testeReclamacao", uri.toString());
+
+                                rec.setImagemReclamacao(uri.toString());
+
+                                InsertData data = new InsertData();
+
+                              data.create(rec);
 
                             }
                         });
