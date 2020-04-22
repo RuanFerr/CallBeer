@@ -10,7 +10,6 @@
         android:id="@+id/labelTopCadastro"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:background="#0000ff"
         android:fontFamily="sans-serif-light"
         android:text="Cadastro da empresa"
         android:textColor="#000"
@@ -139,7 +138,6 @@
         android:layout_marginTop="50dp"
         android:text="Cadastrar"
         android:textColor="#000"
-        android:background="#0000ff"
         app:layout_constraintEnd_toEndOf="@+id/cadEmpresaTelefone"
         app:layout_constraintStart_toStartOf="@+id/cadEmpresaTelefone"
         app:layout_constraintTop_toBottomOf="@+id/cadEmpresaTelefone" />

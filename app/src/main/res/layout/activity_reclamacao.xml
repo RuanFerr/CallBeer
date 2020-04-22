@@ -55,14 +55,15 @@
 
     <Button
         android:id="@+id/btnAddImgReclamacao"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="240dp"
+        android:layout_height="240dp"
         android:layout_marginTop="50dp"
         android:layout_marginBottom="300dp"
         android:text="Adicionar Imagem"
         app:layout_constraintBottom_toTopOf="@+id/btnEnviarReclamacao"
         app:layout_constraintStart_toStartOf="@+id/txtDescricaoReclamacao"
-        app:layout_constraintTop_toBottomOf="@+id/txtDescricaoReclamacao" />
+        app:layout_constraintTop_toBottomOf="@+id/txtDescricaoReclamacao"
+        app:layout_constraintVertical_bias="0.072" />
 
     <Button
         android:id="@+id/btnEnviarReclamacao"
@@ -73,5 +74,15 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imgReclamacao"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/btnAddImgReclamacao"
+        app:layout_constraintEnd_toEndOf="@+id/btnAddImgReclamacao"
+        app:layout_constraintStart_toStartOf="@+id/btnAddImgReclamacao"
+        app:layout_constraintTop_toTopOf="@+id/btnAddImgReclamacao"
+        tools:srcCompat="@tools:sample/avatars" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

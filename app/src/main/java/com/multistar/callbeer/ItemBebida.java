@@ -33,7 +33,7 @@ public class ItemBebida extends Item<ViewHolder> {
     }
     @Override
     public void bind(@NonNull ViewHolder viewHolder, int position) {
-        final CheckBox checkBox = viewHolder.itemView.findViewById(R.id.checkBox);
+        checkBox = viewHolder.itemView.findViewById(R.id.checkBox);
         TextView txtQtde = viewHolder.itemView.findViewById(R.id.txtQtde);
         checkBox.setText(b.getDescricao());
 

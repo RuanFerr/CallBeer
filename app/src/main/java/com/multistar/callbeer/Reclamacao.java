@@ -4,16 +4,22 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.multistar.callbeer.Firebase.InsertData;
+
+import java.io.IOException;
 
 //este recurso está sendo usado para teste da ferramenta. no fim dos testes, vao ser feitos ajustes.
 public class Reclamacao extends AppCompatActivity {
@@ -24,6 +30,7 @@ public class Reclamacao extends AppCompatActivity {
     private EditText mTxtDescricao;
     private Button mBtnAddImg;
     private  Button mbtnEnviarReclamacao;
+    private ImageView mImgReclamacao;
     Uri mImagemSelecionada;
 
     @Override
@@ -35,6 +42,7 @@ public class Reclamacao extends AppCompatActivity {
         mTxtMotivo = findViewById(R.id.txtMotivoReclamacao);
         mTxtData = findViewById(R.id.txtDataReclamacao);
         mTxtDescricao = findViewById(R.id.txtDescricaoReclamacao);
+        mImgReclamacao = findViewById(R.id.imgReclamacao);
 
         mBtnAddImg = findViewById(R.id.btnAddImgReclamacao);
         mbtnEnviarReclamacao = findViewById(R.id.btnEnviarReclamacao);
@@ -59,10 +67,23 @@ public class Reclamacao extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == 0) {
+        if (data != null) {
 
-            mImagemSelecionada = data.getData();
+            if (requestCode == 0) {
 
+                mImagemSelecionada = data.getData();
+
+                Bitmap bitmap = null;
+
+                try {
+                    bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), mImagemSelecionada);
+                    mImgReclamacao.setImageDrawable(new BitmapDrawable(bitmap));
+                    mBtnAddImg.setAlpha(0);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            }
         }
     }
 

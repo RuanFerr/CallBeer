@@ -39,6 +39,7 @@ public class Pedido extends AppCompatActivity {
     ArrayList<Integer> qttsCerveja = new ArrayList<>();
     RecyclerView mListaBebidas;
 
+    static ArrayList<ItemBebida> itens = new ArrayList<>();
 
     ArrayList<ItemBebida> bbd = new ArrayList<>();
 
@@ -53,7 +54,7 @@ public class Pedido extends AppCompatActivity {
         TextView mTxtViewTipoBebida = findViewById(R.id.txtViewTipoBebida);
         adapter = new GroupAdapter();
 
-
+        itens = new ArrayList<>();
 
         mListaBebidas = findViewById(R.id.ListaPedidos);
         mListaBebidas.setAdapter(adapter);
@@ -89,8 +90,12 @@ public class Pedido extends AppCompatActivity {
 
                                 // bbd.add(new ItemBebida(bebida));
                                 //ctrl = bbd.size()-1;
+
+                                itens.add(new ItemBebida(bebida, ctrl));
+
                                 ItemBebida.Qtts.add("0");
                                 ItemBebida.checkBoxex.add(false);
+                                
                                 adapter.add(new ItemBebida(bebida, ctrl));
                                 Log.i("tttt", String.valueOf(ctrl));
                                 ctrl = ctrl + 1;
