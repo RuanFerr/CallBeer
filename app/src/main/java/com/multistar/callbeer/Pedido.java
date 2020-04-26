@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -93,10 +94,7 @@ public class Pedido extends AppCompatActivity {
 
                                 itens.add(new ItemBebida(bebida, ctrl));
 
-                                ItemBebida.Qtts.add("0");
-                                ItemBebida.checkBoxex.add(false);
-                                
-                                adapter.add(new ItemBebida(bebida, ctrl));
+                                adapter.add(itens.get(ctrl));
                                 Log.i("tttt", String.valueOf(ctrl));
                                 ctrl = ctrl + 1;
                             }
@@ -128,10 +126,6 @@ public class Pedido extends AppCompatActivity {
 
                     adicionarBebidas();
 
-                    int aaa = Integer.parseInt(ItemBebida.Qtts.get(0)) + Integer.parseInt(ItemBebida.Qtts.get(1));
-
-                    Log.i("tttt", ItemBebida.Qtts.get(1));
-                    Log.i("tttt", String.valueOf(aaa));
                 }
             });
 
@@ -154,7 +148,19 @@ public class Pedido extends AppCompatActivity {
 
     public void adicionarBebidas(){
 
-        for (int i = 0; i < ItemBebida.checkBoxex.size(); i++){
+        for (int i = 0; i < itens.size(); i ++){
+            if (itens.get(i).isCheck()) {
+
+                Carrinho.bebidas.add(itens.get(i));
+
+                CollectionReference ref = FirebaseFirestore.getInstance().collection("pedido");
+
+
+
+            }
+        }
+
+        /*for (int i = 0; i < ItemBebida.checkBoxex.size(); i++){
             int c = 0;
             if (ItemBebida.checkBoxex.get(i) == true) {
 
@@ -164,7 +170,12 @@ public class Pedido extends AppCompatActivity {
                 Carrinho.bebidas.get(c).setQtde(Integer.parseInt(ItemBebida.Qtts.get(i)));
                 c = c + 1;
             }
-        }
+        }*/
+
+        Intent intent = new Intent(Pedido.this, Principal.class);
+        Toast.makeText(Pedido.this, "Adicionando", Toast.LENGTH_SHORT).show();
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
 
     }
 

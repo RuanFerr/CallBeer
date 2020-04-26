@@ -17,14 +17,15 @@ import java.util.ArrayList;
 
 public class ItemBebida extends Item<ViewHolder> {
 
-    public static ArrayList<String> Qtts = new ArrayList<>();
-    public static ArrayList<Boolean> checkBoxex = new ArrayList<>();
+
 
     private int qtde;
+    private boolean check;
     private Bebida b;
     private CheckBox checkBox;
     private TextView txtQtde;
     private int posicao;
+
     public ItemBebida(Bebida bebida, int posicao){
 
         this.b = bebida;
@@ -41,9 +42,10 @@ public class ItemBebida extends Item<ViewHolder> {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
 
-                Qtts.set(posicao, v.getText().toString());
+                Pedido.itens.get(posicao).setQtde(Integer.valueOf(v.getText().toString()));
 
-                Log.i("tttt", Qtts.get(posicao));
+                Log.i("tttt", String.valueOf(Pedido.itens.get(posicao).getQtde()));
+
                 return false;
             }
         });
@@ -54,12 +56,13 @@ public class ItemBebida extends Item<ViewHolder> {
 
                 if (checkBox.isChecked()) {
 
-                    ItemBebida.checkBoxex.set(posicao, true);
 
+                    Pedido.itens.get(posicao).setCheck(true);
                 } else {
-                    ItemBebida.checkBoxex.set(posicao, false);
+
+                    Pedido.itens.get(posicao).setCheck(false);
                 }
-                Log.i("tttt", checkBoxex.get(posicao).toString());
+                Log.i("tttt", String.valueOf(Pedido.itens.get(posicao).getQtde()));
 
             }
         });
@@ -109,5 +112,13 @@ public class ItemBebida extends Item<ViewHolder> {
 
     public void setTxtQtde(TextView txtQtde) {
         this.txtQtde = txtQtde;
+    }
+
+    public boolean isCheck() {
+        return check;
+    }
+
+    public void setCheck(boolean check) {
+        this.check = check;
     }
 }
