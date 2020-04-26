@@ -36,10 +36,11 @@
 
     <Button
         android:id="@+id/btnLogin"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
         android:text="Login"
+        android:background="@drawable/rounded_button"
         app:layout_constraintEnd_toEndOf="@+id/editSenhaLogin"
         app:layout_constraintStart_toStartOf="@+id/editSenhaLogin"
         app:layout_constraintTop_toBottomOf="@+id/editSenhaLogin" />

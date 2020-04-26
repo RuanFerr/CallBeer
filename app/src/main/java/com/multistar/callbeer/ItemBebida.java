@@ -20,16 +20,16 @@ public class ItemBebida extends Item<ViewHolder> {
     public static ArrayList<String> Qtts = new ArrayList<>();
     public static ArrayList<Boolean> checkBoxex = new ArrayList<>();
 
-    ArrayList<Bebida> Cervejas = new ArrayList<>();
-
     private int qtde;
     private Bebida b;
     private CheckBox checkBox;
     private TextView txtQtde;
     private int posicao;
     public ItemBebida(Bebida bebida, int posicao){
+
         this.b = bebida;
         this.posicao = posicao;
+
     }
     @Override
     public void bind(@NonNull ViewHolder viewHolder, int position) {

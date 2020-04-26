@@ -10,7 +10,7 @@
         android:id="@+id/labelTopCadastro2"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:background="#0000ff"
+        android:background="#5555ff"
         android:fontFamily="sans-serif-light"
         android:text="Cadastro pessoa"
         android:textColor="#000"
@@ -132,10 +132,10 @@
 
     <Button
         android:id="@+id/btnCadastrarPessoa"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:background="#0000ff"
+        android:background="@drawable/rounded_button"
         android:text="Cadastrar"
         app:layout_constraintEnd_toEndOf="@+id/cadPessoaTelefone"
         app:layout_constraintStart_toStartOf="@+id/cadPessoaTelefone"
