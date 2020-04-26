@@ -95,27 +95,46 @@ public class Reclamacao extends AppCompatActivity {
 
     }
 
-    public void enviarReclamacao(){
+    public void enviarReclamacao() {
+        if (testarCampos()){
+            com.multistar.callbeer.model.Reclamacao reclamacao = new com.multistar.callbeer.model.Reclamacao(
+                    FirebaseAuth.getInstance().getCurrentUser().getUid().toString(),
+                    mTxtNomeCliente.getText().toString(),
+                    mTxtMotivo.getText().toString(),
+                    mTxtData.getText().toString(),
+                    mTxtDescricao.getText().toString()
+            );
 
-        com.multistar.callbeer.model.Reclamacao reclamacao = new com.multistar.callbeer.model.Reclamacao(
-                FirebaseAuth.getInstance().getCurrentUser().getUid().toString(),
-                mTxtNomeCliente.getText().toString(),
-                mTxtMotivo.getText().toString(),
-                mTxtData.getText().toString(),
-                mTxtDescricao.getText().toString()
-        );
+            com.multistar.callbeer.model.Reclamacao.salvarReclamacao(reclamacao, mImagemSelecionada);
 
-        com.multistar.callbeer.model.Reclamacao.salvarReclamacao(reclamacao, mImagemSelecionada);
 
-        if (InsertData.isRetorno() == true) {
-            Toast.makeText(Reclamacao.this, "Enviado com sucesso", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(Reclamacao.this, Principal.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
+                Toast.makeText(Reclamacao.this, "Enviando", Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(Reclamacao.this, Principal.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+
         } else {
-            Toast.makeText(Reclamacao.this, "Erro ao enviar", Toast.LENGTH_SHORT).show();
+            Toast.makeText(Reclamacao.this, "Preencha todos os campos", Toast.LENGTH_SHORT).show();
         }
+    }
 
+    private boolean testarCampos() {
+
+        String nomeCliente = mTxtNomeCliente.getText().toString();
+        String motivo = mTxtMotivo.getText().toString();
+        String data = mTxtData.getText().toString();
+        String descricao = mTxtDescricao.getText().toString();
+
+
+
+        boolean nomeCli = (nomeCliente.isEmpty() || nomeCliente == null);
+        boolean motiv = (motivo.isEmpty() || motivo == null);
+        boolean dat = (data.isEmpty() || data == null);
+        boolean desc = (descricao.isEmpty() || descricao == null);
+        boolean img = (mImagemSelecionada == null);
+
+        return !(nomeCli || motiv || dat || desc || img);
     }
 
 }

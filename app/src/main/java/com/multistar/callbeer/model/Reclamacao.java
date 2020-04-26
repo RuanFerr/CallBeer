@@ -1,7 +1,9 @@
 package com.multistar.callbeer.model;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -12,6 +14,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.multistar.callbeer.Firebase.InsertData;
+import com.multistar.callbeer.Principal;
 
 import java.util.UUID;
 
@@ -24,12 +27,15 @@ public class Reclamacao {
     private String descricao;
     private String imagemReclamacao;
 
+    private static Boolean retorno;
+
     public Reclamacao(String idUser, String cliente, String motivo, String data, String descricao){
         this.idUserReclamacao = idUser;
         this.cliente = cliente;
         this.motivo = motivo;
         this.data = data;
         this.descricao = descricao;
+        retorno = false;
     }
 
     public String getIdUserReclamacao() {
@@ -80,6 +86,14 @@ public class Reclamacao {
         this.imagemReclamacao = imagemReclamacao;
     }
 
+    public static Boolean getRetorno() {
+        return retorno;
+    }
+
+    public static void setRetorno(Boolean retorno) {
+        Reclamacao.retorno = retorno;
+    }
+
     public static void salvarReclamacao(Reclamacao reclamacao, Uri img) {
 
         String nomeImagem = UUID.randomUUID().toString();
@@ -93,14 +107,16 @@ public class Reclamacao {
                         ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                             @Override
                             public void onSuccess(Uri uri) {
-                                Log.i("testeReclamacao", uri.toString());
 
                                 rec.setImagemReclamacao(uri.toString());
 
                                 InsertData data = new InsertData();
 
-                              data.create(rec);
+                                data.create(rec);
 
+                                Log.i("testeReclamacao", uri.toString());
+
+                                retorno = true;
                             }
                         });
                     }
@@ -113,4 +129,5 @@ public class Reclamacao {
                 });
 
     }
+
 }

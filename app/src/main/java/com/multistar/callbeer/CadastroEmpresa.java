@@ -30,6 +30,7 @@ public class CadastroEmpresa extends AppCompatActivity {
     EditText mCadEmpresaIe;
     EditText mCadEmpresaTelefone;
     Button mBtnCadastrarEmpresa;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
