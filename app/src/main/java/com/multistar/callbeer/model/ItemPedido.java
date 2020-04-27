@@ -1,10 +1,13 @@
 package com.multistar.callbeer.model;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class ItemPedido {
-    private String id;
     private String UIDCliente;
     private Bebida bebida;
     private int quantidade;
+    private String estado;  //"ESPERA" para pedido esperando confirmação, "CONFIRMADO" para pedido confirmado e esperando entrega
+                            //"ENTREGUE" para pedido entregue, "CANCELADO" para pedido cancelado
 
     public String getUIDCliente() {
         return UIDCliente;
@@ -30,11 +33,19 @@ public class ItemPedido {
         this.quantidade = quantidade;
     }
 
-    public String getId() {
-        return id;
+    public String getEstado() {
+        return estado;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
+
+    public ItemPedido(Bebida bebida, int quantidade){
+        this.UIDCliente = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        this.bebida = bebida;
+        this.quantidade = quantidade;
+        this.estado = "ESPERA";
+    }
+
 }

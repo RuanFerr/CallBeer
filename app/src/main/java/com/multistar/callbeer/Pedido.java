@@ -23,6 +23,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.multistar.callbeer.model.Bebida;
+import com.multistar.callbeer.model.ItemPedido;
 import com.xwray.groupie.GroupAdapter;
 import com.xwray.groupie.Item;
 import com.xwray.groupie.ViewHolder;
@@ -135,12 +136,9 @@ public class Pedido extends AppCompatActivity {
         public int getLayout() {
             return R.layout.btn_adicionar;
         }
-
-
         public Button getmBtnPedido() {
             return mBtnPedido;
         }
-
         public void setmBtnPedido(Button mBtnPedido) {
             this.mBtnPedido = mBtnPedido;
         }
@@ -153,9 +151,10 @@ public class Pedido extends AppCompatActivity {
 
                 Carrinho.bebidas.add(itens.get(i));
 
+                ItemPedido item = new ItemPedido(itens.get(i).getB(), itens.get(i).getQtde());
+
                 CollectionReference ref = FirebaseFirestore.getInstance().collection("pedido");
-
-
+                ref.add(item);
 
             }
         }
