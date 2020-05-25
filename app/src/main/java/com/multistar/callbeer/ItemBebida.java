@@ -42,9 +42,9 @@ public class ItemBebida extends Item<ViewHolder> {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
 
-                Pedido.itens.get(posicao).setQtde(Integer.valueOf(v.getText().toString()));
+                Pedidos.itens.get(posicao).setQtde(Integer.valueOf(v.getText().toString()));
 
-                Log.i("tttt", String.valueOf(Pedido.itens.get(posicao).getQtde()));
+                Log.i("tttt", String.valueOf(Pedidos.itens.get(posicao).getQtde()));
 
                 return false;
             }
@@ -57,12 +57,12 @@ public class ItemBebida extends Item<ViewHolder> {
                 if (checkBox.isChecked()) {
 
 
-                    Pedido.itens.get(posicao).setCheck(true);
+                    Pedidos.itens.get(posicao).setCheck(true);
                 } else {
 
-                    Pedido.itens.get(posicao).setCheck(false);
+                    Pedidos.itens.get(posicao).setCheck(false);
                 }
-                Log.i("tttt", String.valueOf(Pedido.itens.get(posicao).getQtde()));
+                Log.i("tttt", String.valueOf(Pedidos.itens.get(posicao).getQtde()));
 
             }
         });
